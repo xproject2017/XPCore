@@ -1,0 +1,104 @@
+{
+  "Status": 0,
+  "CategoryId": 9,
+  "ProductInfo": [
+    {
+      "data": [
+        {
+          "text": "原产国",
+          "type": "1",
+          "value": "美国",
+          "key": "OriginCountry"
+        },
+        {
+          "text": "生产日期",
+          "type": "1",
+          "value": "2017/07/27",
+          "key": "ProductDate"
+        }
+      ],
+      "text": "基本信息"
+    },
+    {
+      "data": [
+        {
+          "text": "监督机构",
+          "type": "1",
+          "value": "北京出入境检验检疫局",
+          "key": "AuthDept"
+        }
+      ],
+      "text": "报检信息"
+    }
+  ],
+  "mccode": "26fb0a9f2",
+  "productid": 2,
+  "BaseInfo": [
+    {
+      "text": "商品名称",
+      "type": "1",
+      "value": "铁路宿舍",
+      "key": "ProductName"
+    },
+    {
+      "color": "ff0000",
+      "text": "检验状态",
+      "type": "1",
+      "value": "未检验",
+      "key": "StatusDesc"
+    },
+    {
+      "text": "商品图片多图",
+      "type": "2",
+      "value": "http://10.12.0.93:8080/picture.html?ppid=1&pvendorid=231&suffix=product&prstypeid=18346",
+      "key": "MultiLabelProof",
+      "url": "http://10.12.0.96:8080/v2/app/getproductspic4appapi?ppid=1&pvendorid=231&suffix=product&prstypeid=18346"
+    },
+    {
+      "text": "商品图片",
+      "type": "2",
+      "value": "http://10.12.0.96:8080/v2/imgpdf/getimageapi?filename=product18346_0.jpg&ppid=1&pvendorid=231&suffix=product",
+      "key": "LabelProof"
+    },
+    {
+      "text": "查询次数",
+      "type": "1",
+      "value": "19",
+      "key": "Count"
+    }
+  ],
+  "AddService": {
+    "CommentLevel": {},
+    "ActivityInfo": {},
+    "ImageTextInfo": "",
+    "GraphicIntro": {},
+    "VendorIntro": {},
+    "SaleInfo": {},
+    "BestComment": {}
+  },
+  "ProdPicsSize": [
+    {
+      "w": 1024,
+      "h": 768
+    },
+    {
+      "w": 1024,
+      "h": 768
+    }
+  ],
+  "vendorid": 1156859,
+  "CategoryType": 1,
+  "batchid": 1,
+  "CodeFlag": 0,
+  "authid": 6,
+  "Result": 0,
+  "TagType": 1,
+  "mcode": "",
+  "ProdPics": [
+    "http://10.12.0.96:8080/v2/imgpdf/getimageapi?filename=product18346_0.jpg&ppid=1&pvendorid=231&suffix=product",
+    "http://10.12.0.96:8080/v2/imgpdf/getimageapi?filename=product18346_1.jpg&ppid=1&pvendorid=231&suffix=product"
+  ],
+  "typeid": 75815914143,
+  "feedbackflag": 0,
+  "provienceid": 1
+}

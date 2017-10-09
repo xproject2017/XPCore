@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <util:map id="baseinfoMap"  map-class="java.util.HashMap">
+        <entry key="xproject.url.prefix" value="http://10.12.10.215:8080/"/>
+        <entry key="xproject.imageuploadpath" value="D:/home/webservice/imageupload"/>
+        <entry key="xproject.pid.prefix" value="xp"/>
+        <entry key="xproject.pid.url" value="http://www.xproject.com"/>
+    </util:map>
+</beans>

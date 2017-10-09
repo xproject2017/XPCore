@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="ueditor-1.1.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../javalib/ueditor-lib/commons-io-2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../javalib/ueditor-lib/ueditor-1.1.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xproject.dao.system.TSysStaffDao">
+
+    <select id="getTSysStaff" parameterType="TSysStaff" resultType="TSysStaff">
+        select *
+        from T_SYS_STAFF
+        <where>
+            <if test="userid!=null">
+                USERID=#{userid}</if>
+            <if test="roleid!=null">
+                AND ROLEID=#{roleid}</if>
+            <if test="status!=null">
+                AND STATUS=#{status}</if>
+            <if test="companyid!=null">
+                AND COMPANYID=#{companyid}</if>
+            <if test="fatherid!=null">
+                AND FATHERID=#{fatherid}</if>
+            <if test="useremail!=null">
+                AND USEREMAIL=#{useremail}</if>
+            <if test="usermobilephone!=null">
+                AND USERMOBILEPHONE=#{usermobilephone}</if>
+            <if test="username!=null">
+                AND USERNAME=#{username}</if>
+            <if test="userpassword!=null">
+                AND USERPASSWORD=#{userpassword}</if>
+            <if test="userstatus!=null">
+                AND USERSTATUS=#{userstatus}</if>
+            <if test="usertelephone!=null">
+                AND USERTELEPHONE=#{usertelephone}</if>
+            <if test="usertype!=null">
+                AND USERTYPE=#{usertype}</if>
+            <if test="vendorids!=null">
+                AND VENDORIDS=#{vendorids}</if>
+            <if test="jobnumber!=null">
+                AND JOBNUMBER=#{jobnumber}</if>
+            <if test="department!=null">
+                AND DEPARTMENT=#{department}</if>
+            <if test="sendflag!=null">
+                AND SENDFLAG=#{sendflag}</if>
+            <if test="uflag!=null">
+                AND UFLAG=#{uflag}</if>
+            <if test="uname!=null">
+                AND UNAME=#{uname}</if>
+            <if test="ufax!=null">
+                AND UFAX=#{ufax}</if>
+            <if test="nusertype!=null">
+                AND NUSERTYPE=#{nusertype}</if>
+            <if test="createtime!=null">
+                AND CREATETIME>=#{createtime}</if>
+
+        </where>
+        limit 1
+    </select>
+
+    <select id="getTSysStaffLikeUsername" parameterType="TSysStaff" resultType="TSysStaff">
+        select * from T_SYS_STAFF
+        <where>
+            <if test="username!=null">
+                AND USERNAME LIKE CONCAT('%',#{username})</if>
+
+        </where>
+    </select>
+    <!-- 分页查询sql语句：入库时间CREATETIME字段上要有索引，且分页的where条件中一定要带有CREATETIME条件 -->
+    <!-- 分页查询sql语句：最后一次更新时间SAVETIME字段用于查询结果的排序 -->
+    <select id="getTSysStaffGroup" parameterType="TSysStaff" resultType="hashMap">
+        select IFNULL(COUNT(USERID),0) CNT,IFNULL(MAX(USERID),0) MAXID,IFNULL(MIN(USERID),0) MINID from T_SYS_STAFF
+        <where>
+            <if test="userid!=null">
+                USERID=#{userid}</if>
+            <if test="authid!=null">
+                AUTHID=#{authid}</if>
+            <if test="roleid!=null">
+                AND ROLEID=#{roleid}</if>
+            <if test="rolelevel!=null">
+                AND ROLELEVEL=#{rolelevel}</if>
+            <if test="status!=null">
+                AND STATUS=#{status}</if>
+            <if test="companyid!=null">
+                AND COMPANYID=#{companyid}</if>
+            <if test="fatherid!=null">
+                AND FATHERID=#{fatherid}</if>
+            <if test="useremail!=null">
+                AND USEREMAIL=#{useremail}</if>
+            <if test="usermobilephone!=null">
+                AND USERMOBILEPHONE=#{usermobilephone}</if>
+            <if test="username!=null">
+                AND USERNAME=#{username}</if>
+            <if test="userpassword!=null">
+                AND USERPASSWORD=#{userpassword}</if>
+            <if test="userstatus!=null">
+                AND USERSTATUS=#{userstatus}</if>
+            <if test="usertelephone!=null">
+                AND USERTELEPHONE=#{usertelephone}</if>
+            <if test="usertype!=null">
+                AND USERTYPE=#{usertype}</if>
+            <if test="vendorids!=null">
+                AND VENDORIDS=#{vendorids}</if>
+            <if test="jobnumber!=null">
+                AND JOBNUMBER=#{jobnumber}</if>
+            <if test="department!=null">
+                AND DEPARTMENT=#{department}</if>
+            <if test="sendflag!=null">
+                AND SENDFLAG=#{sendflag}</if>
+            <if test="uflag!=null">
+                AND UFLAG=#{uflag}</if>
+            <if test="uname!=null">
+                AND UNAME=#{uname}</if>
+            <if test="ufax!=null">
+                AND UFAX=#{ufax}</if>
+            <if test="nusertype!=null">
+                AND NUSERTYPE=#{nusertype}</if>
+            <if test="createtime!=null">
+                AND CREATETIME>=#{createtime}</if>
+
+        </where>
+    </select>
+    <!-- 分页查询sql语句：入库时间CREATETIME字段上要有索引，且分页的where条件中一定要带有CREATETIME条件 -->
+    <!-- 分页查询sql语句：最后一次更新时间SAVETIME字段用于查询结果的排序 -->
+    <select id="getTSysStaffList" parameterType="TSysStaff" resultType="TSysStaff">
+        select * from T_SYS_STAFF
+        <where>
+            <if test="userid!=null">
+                USERID=#{userid}</if>
+            <if test="authid!=null">
+                AND AUTHID=#{authid}</if>
+            <if test="roleid!=null">
+                AND ROLEID=#{roleid}</if>
+            <if test="rolelevel!=null">
+                AND ROLELEVEL=#{rolelevel}</if>
+            <if test="status!=null">
+                AND STATUS=#{status}</if>
+            <if test="companyid!=null">
+                AND COMPANYID=#{companyid}</if>
+            <if test="fatherid!=null">
+                AND FATHERID=#{fatherid}</if>
+            <if test="useremail!=null">
+                AND USEREMAIL=#{useremail}</if>
+            <if test="usermobilephone!=null">
+                AND USERMOBILEPHONE=#{usermobilephone}</if>
+            <if test="username!=null">
+                AND USERNAME=#{username}</if>
+            <if test="userpassword!=null">
+                AND USERPASSWORD=#{userpassword}</if>
+            <if test="userstatus!=null">
+                AND USERSTATUS=#{userstatus}</if>
+            <if test="usertelephone!=null">
+                AND USERTELEPHONE=#{usertelephone}</if>
+            <if test="usertype!=null">
+                AND USERTYPE=#{usertype}</if>
+            <if test="vendorids!=null">
+                AND VENDORIDS LIKE concat('%',#{vendorids},'%')</if>
+            <if test="jobnumber!=null">
+                AND JOBNUMBER=#{jobnumber}</if>
+            <if test="department!=null">
+                AND DEPARTMENT=#{department}</if>
+            <if test="sendflag!=null">
+                AND SENDFLAG=#{sendflag}</if>
+            <if test="uflag!=null">
+                AND UFLAG=#{uflag}</if>
+            <if test="uname!=null">
+                AND UNAME=#{uname}</if>
+            <if test="ufax!=null">
+                AND UFAX=#{ufax}</if>
+            <if test="nusertype!=null">
+                AND NUSERTYPE=#{nusertype}</if>
+            <if test="createtime!=null">
+                AND CREATETIME>=#{createtime}</if>
+        </where> ORDER BY SAVETIME DESC
+        <if test="currentpage!=null and pagesize!=null">
+            <![CDATA[ LIMIT #{currentsize}, #{pagesize} ]]>
+        </if>
+    </select>
+    <insert id="addTSysStaff" useGeneratedKeys="true" keyProperty="userid" parameterType="TSysStaff">
+        INSERT INTO T_SYS_STAFF (ROLEID,AUTHID,PROVINCEID,STATUS,COMPANYID,FATHERID,USEREMAIL,USERMOBILEPHONE,USERNAME,USERPASSWORD,USERSTATUS,USERTELEPHONE,USERTYPE,VENDORIDS,SAVETIME,JOBNUMBER,DEPARTMENT,SENDFLAG,UFLAG,UNAME,UFAX,NUSERTYPE,CREATETIME)
+        values(#{roleid},#{authid},#{provinceid},#{status},#{companyid},#{fatherid},#{useremail},#{usermobilephone},#{username},#{userpassword},#{userstatus},#{usertelephone},#{usertype},#{vendorids},NOW(),#{jobnumber},#{department},#{sendflag},#{uflag},#{uname},#{ufax},#{nusertype},NOW())
+    </insert>
+    <update id="updateTSysStaff" parameterType="TSysStaff">
+        update T_SYS_STAFF
+            <set>
+            <if test="roleid!=null">ROLEID=#{roleid},</if>
+            <if test="rolelevel!=null">ROLELEVEL=#{rolelevel},</if>
+            <if test="status!=null">STATUS=#{status},</if>
+            <if test="companyid!=null">COMPANYID=#{companyid},</if>
+            <if test="fatherid!=null">FATHERID=#{fatherid},</if>
+            <if test="useremail!=null">USEREMAIL=#{useremail},</if>
+            <if test="usermobilephone!=null">USERMOBILEPHONE=#{usermobilephone},</if>
+            <if test="username!=null">USERNAME=#{username},</if>
+            <if test="userpassword!=null">USERPASSWORD=#{userpassword},</if>
+            <if test="userstatus!=null">USERSTATUS=#{userstatus},</if>
+            <if test="usertelephone!=null">USERTELEPHONE=#{usertelephone},</if>
+            <if test="usertype!=null">USERTYPE=#{usertype},</if>
+            <if test="vendorids!=null">VENDORIDS=#{vendorids},</if>
+            <if test="1==1">SAVETIME=NOW(),</if>
+            <if test="jobnumber!=null">JOBNUMBER=#{jobnumber},</if>
+            <if test="department!=null">DEPARTMENT=#{department},</if>
+            <if test="sendflag!=null">SENDFLAG=#{sendflag},</if>
+            <if test="uflag!=null">UFLAG=#{uflag},</if>
+            <if test="uname!=null">UNAME=#{uname},</if>
+            <if test="ufax!=null">UFAX=#{ufax},</if>
+            <if test="nusertype!=null">NUSERTYPE=#{nusertype},</if>
+        </set>
+        where USERID=#{userid}
+        AND SAVETIME=#{savetime}
+    </update>
+    <delete id="deleteTSysStaff" parameterType="TSysStaff">
+        delete from T_SYS_STAFF
+        where USERID=#{userid}
+        AND SAVETIME=#{savetime}
+    </delete>
+
+    <insert id="addTSysStaffMenu" useGeneratedKeys="true" keyProperty="primaryKey" parameterType="TSysStaffMenu">
+        INSERT INTO T_SYS_STAFFMENU (USERID,AUTHID,PROVINCEID,MENUID)
+        values(#{userid},#{authid},#{provinceid},#{menuid})
+    </insert>
+
+    <delete id="deleteTSysStaffMenu" parameterType="TSysStaff">
+        delete from T_SYS_STAFFMENU
+        where USERID=#{userid}
+        and AUTHID=#{authid}
+    </delete>
+
+    <select id="getTSysStaffMenuList" parameterType="TSysStaff" resultType="TSysStaffMenu">
+        select * from T_SYS_STAFFMENU
+        <where>
+            <if test="userid!=null">
+                USERID=#{userid}</if>
+            <if test="authid!=null">
+                AND AUTHID=#{authid}</if>
+            <if test="rolepopedom!=null">
+                AND MENUID IN (${rolepopedom})</if>
+        </where>
+    </select>
+
+    <select id="getTSysRole" parameterType="TSysRole" resultType="TSysRole">
+        select * from T_SYS_ROLE
+        <where>
+            <if test="rolename!=null">
+                AND ROLENAME = #{rolename}</if>
+            <if test="authid!=null">
+                AND AUTHID = #{authid}</if>
+            <if test="provinceid!=null">
+                AND PROVINCEID = #{provinceid}</if>
+            <if test="roleid!=null">
+                AND ROLEID = #{roleid}</if>
+        </where>
+    </select>
+
+    <update id="updateTSysRole" parameterType="TSysRole">
+        update T_SYS_ROLE
+        <set>
+            <if test="rolepopedom!=null">ROLEPOPEDOM=#{rolepopedom},</if>
+        </set>
+        where ROLEID=#{roleid}
+        AND SAVETIME=#{savetime}
+    </update>
+
+    <select id="getTSysRoleList" parameterType="TSysRole" resultType="TSysRole">
+        select * from T_SYS_ROLE
+        <where>
+            <if test="rolename!=null">
+                AND ROLENAME = #{rolename}</if>
+            <if test="aaids!=null">
+                AND AUTHID IN (${aaids})</if>
+            <if test="authid!=null">
+                AND AUTHID =#{authid}</if>
+            <if test="provinceid!=null">
+                AND PROVINCEID = #{provinceid}</if>
+        </where>
+    </select>
+
+
+
+</mapper>

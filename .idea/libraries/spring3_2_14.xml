@@ -1,0 +1,31 @@
+<component name="libraryTable">
+  <library name="spring3.2.14">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../javalib/sysdataweb/spring/aopalliance.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../javalib/sysdataweb/spring/aspectjweaver-1.7.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../javalib/sysdataweb/spring/jstl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../javalib/sysdataweb/spring/spring-aop-3.2.14.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../javalib/sysdataweb/spring/spring-aspects-3.2.14.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../javalib/sysdataweb/spring/spring-beans-3.2.14.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../javalib/sysdataweb/spring/spring-context-3.2.14.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../javalib/sysdataweb/spring/spring-context-support-3.2.14.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../javalib/sysdataweb/spring/spring-core-3.2.14.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../javalib/sysdataweb/spring/spring-expression-3.2.14.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../javalib/sysdataweb/spring/spring-instrument-3.2.14.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../javalib/sysdataweb/spring/spring-instrument-tomcat-3.2.14.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../javalib/sysdataweb/spring/spring-jdbc-3.2.14.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../javalib/sysdataweb/spring/spring-jms-3.2.14.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../javalib/sysdataweb/spring/spring-orm-3.2.14.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../javalib/sysdataweb/spring/spring-oxm-3.2.14.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../javalib/sysdataweb/spring/spring-struts-3.2.14.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../javalib/sysdataweb/spring/spring-test-3.2.14.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../javalib/sysdataweb/spring/spring-tx-3.2.14.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../javalib/sysdataweb/spring/spring-web-3.2.14.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../javalib/sysdataweb/spring/spring-webmvc-3.2.14.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../javalib/sysdataweb/spring/spring-webmvc-portlet-3.2.14.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../javalib/sysdataweb/spring/standard.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

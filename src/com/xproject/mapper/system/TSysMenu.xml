@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xproject.dao.system.TSysMenuDao">
+
+    <select id="getTSysMenu" parameterType="TSysMenu" resultType="TSysMenu">
+        select * from T_SYS_MENU
+        <where>
+            <if test="nodeid!=null">
+                NODEID=#{nodeid}</if>
+            <if test="nodelevel!=null">
+                AND NODELEVEL=#{nodelevel}</if>
+            <if test="nodecode!=null">
+                AND NODECODE=#{nodecode}</if>
+            <if test="nodetext!=null">
+                AND NODETEXT=#{nodetext}</if>
+            <if test="path!=null">
+                AND PATH=#{path}</if>
+            <if test="fnodeid!=null">
+                AND FNODEID=#{fnodeid}</if>
+            <if test="mtype!=null">
+                AND MTYPE=#{mtype}</if>
+            <if test="createtime!=null">
+                AND CREATETIME>=#{createtime}</if>
+            <if test="coding!=null">
+                AND CODING=#{coding}</if>
+            <if test="comment!=null">
+                AND COMMENT=#{comment}</if>
+        </where>
+    </select>
+    <!-- 分页查询sql语句：入库时间CREATETIME字段上要有索引，且分页的where条件中一定要带有CREATETIME条件 -->
+    <!-- 分页查询sql语句：最后一次更新时间SAVETIME字段用于查询结果的排序 -->
+    <select id="getTSysMenuGroup" parameterType="TSysMenu" resultType="hashMap">
+        select IFNULL(COUNT(NODEID),0) CNT,IFNULL(MAX(NODEID),0) MAXID,IFNULL(MIN(NODEID),0) MINID from T_SYS_MENU
+        <where>
+            <if test="nodeid!=null">
+                NODEID=#{nodeid}</if>
+            <if test="nodelevel!=null">
+                AND NODELEVEL=#{nodelevel}</if>
+            <if test="nodecode!=null">
+                AND NODECODE=#{nodecode}</if>
+            <if test="nodetext!=null">
+                AND NODETEXT=#{nodetext}</if>
+            <if test="path!=null">
+                AND PATH=#{path}</if>
+            <if test="fnodeid!=null">
+                AND FNODEID=#{fnodeid}</if>
+            <if test="mtype!=null">
+                AND MTYPE=#{mtype}</if>
+            <if test="createtime!=null">
+                AND CREATETIME>=#{createtime}</if>
+            <if test="coding!=null">
+                AND CODING=#{coding}</if>
+            <if test="comment!=null">
+                AND COMMENT=#{comment}</if>
+            <if test="checked!=null">
+                AND CHECKED=#{checked}</if>
+
+        </where>
+    </select>
+    <!-- 分页查询sql语句：入库时间CREATETIME字段上要有索引，且分页的where条件中一定要带有CREATETIME条件 -->
+    <!-- 分页查询sql语句：最后一次更新时间SAVETIME字段用于查询结果的排序 -->
+    <select id="getTSysMenuList" parameterType="TSysMenu" resultType="TSysMenu">
+        select * from T_SYS_MENU
+        <where>
+            <if test="nodeid!=null">
+                NODEID=#{nodeid}</if>
+            <if test="nodelevel!=null">
+                AND NODELEVEL=#{nodelevel}</if>
+            <if test="nodecode!=null">
+                AND NODECODE=#{nodecode}</if>
+            <if test="nodetext!=null">
+                AND NODETEXT=#{nodetext}</if>
+            <if test="path!=null">
+                AND PATH=#{path}</if>
+            <if test="fnodeid!=null">
+                AND FNODEID=#{fnodeid}</if>
+            <if test="mtype!=null">
+                AND MTYPE=#{mtype}</if>
+            <if test="createtime!=null">
+                AND CREATETIME>=#{createtime}</if>
+            <if test="coding!=null">
+                AND CODING=#{coding}</if>
+            <if test="comment!=null">
+                AND COMMENT=#{comment}</if>
+        </where> ORDER BY CODING
+        <if test="currentpage!=null and pagesize!=null">
+            <![CDATA[ LIMIT #{currentsize}, #{pagesize} ]]>
+        </if>
+    </select>
+    <insert id="addTSysMenu" useGeneratedKeys="true" keyProperty="nodeid" parameterType="TSysMenu">
+        INSERT INTO T_SYS_MENU (NODEID,NODELEVEL,NODECODE,NODETEXT,PATH,FNODEID,MTYPE,CREATETIME,SAVETIME,CODING,COMMENT)
+        values(#{nodeid},#{nodelevel},#{nodecode},#{nodetext},#{path},#{fnodeid},#{mtype},NOW(),NOW(),#{coding},#{comment})
+    </insert>
+    <update id="updateTSysMenu" parameterType="TSysMenu">
+        update T_SYS_MENU
+        <set>
+            <if test="nodeid!=null">NODEID=#{nodeid},</if>
+            <if test="nodelevel!=null">NODELEVEL=#{nodelevel},</if>
+            <if test="nodecode!=null">NODECODE=#{nodecode},</if>
+            <if test="nodetext!=null">NODETEXT=#{nodetext},</if>
+            <if test="path!=null">PATH=#{path},</if>
+            <if test="fnodeid!=null">FNODEID=#{fnodeid},</if>
+            <if test="1==1">SAVETIME=NOW(),</if>
+            <if test="coding!=null">CODING=#{coding},</if>
+            <if test="comment!=null">COMMENT=#{comment},</if>
+        </set>
+        where NODEID = #{nodeid}
+    </update>
+    <delete id="deleteTSysMenu" parameterType="TSysMenu">
+        delete from T_SYS_MENU
+        where NODEID = #{nodeid} AND SAVETIME=#{savetime}
+    </delete>
+
+
+    <select id="getTSysMenuListByRole" parameterType="TSysRole" resultType="TSysMenu">
+        select * from T_SYS_MENU
+        <where>
+            <if test="rolepopedom!=null">
+                NODEID IN (${rolepopedom})</if>
+        </where>
+        ORDER BY CODING
+    </select>
+
+</mapper>

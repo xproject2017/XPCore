@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.xproject.manager"/>
+
+    <!-- 省局子局数据库连接信息映射 -->
+    <bean id="dbconfigProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <value>/WEB-INF/dbconn.properties</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="dbpropertyConfigurer" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+        <property name="properties" ref="dbconfigProperties" />
+    </bean>
+    <bean id="xp"  class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="com.mysql.jdbc.Driver" />
+        <property name="jdbcUrl" value="${jdbc.xpdb.url}" />
+        <property name="user" value="${jdbc.xpdb.username}" />
+        <property name="password" value="${jdbc.xpdb.pwd}" />
+        <property name="initialPoolSize" value="${initialPoolSize}"/>
+        <property name="maxPoolSize" value="${maxPoolSize}"/>
+        <property name="minPoolSize" value="${minPoolSize}"/>
+        <property name="maxIdleTime" value="${maxIdleTime}"/>
+        <property name="idleConnectionTestPeriod" value="${idleConnectionTestPeriod}" />
+    </bean>
+    <bean id="xpzj01"  class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="com.mysql.jdbc.Driver" />
+        <property name="jdbcUrl" value="${jdbc.xpzj01db.url}" />
+        <property name="user" value="${jdbc.xpzj01db.username}" />
+        <property name="password" value="${jdbc.xpzj01db.pwd}" />
+        <property name="initialPoolSize" value="${initialPoolSize}"/>
+        <property name="maxPoolSize" value="${maxPoolSize}"/>
+        <property name="minPoolSize" value="${minPoolSize}"/>
+        <property name="maxIdleTime" value="${maxIdleTime}"/>
+        <property name="idleConnectionTestPeriod" value="${idleConnectionTestPeriod}" />
+    </bean>
+    <bean id="xpzj02"  class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="com.mysql.jdbc.Driver" />
+        <property name="jdbcUrl" value="${jdbc.xpzj02db.url}" />
+        <property name="user" value="${jdbc.xpzj02db.username}" />
+        <property name="password" value="${jdbc.xpzj02db.pwd}" />
+        <property name="initialPoolSize" value="${initialPoolSize}"/>
+        <property name="maxPoolSize" value="${maxPoolSize}"/>
+        <property name="minPoolSize" value="${minPoolSize}"/>
+        <property name="maxIdleTime" value="${maxIdleTime}"/>
+        <property name="idleConnectionTestPeriod" value="${idleConnectionTestPeriod}" />
+    </bean>
+    <bean id="multipleDataSource" class="com.xproject.util.MultipleDataSource">
+        <property name="defaultTargetDataSource" ref="xp"/>
+        <property name="targetDataSources">
+            <map>
+                <entry key="xp" value-ref="xp"/>
+                <entry key="xpzj01" value-ref="xpzj01"/>
+                <entry key="xpzj02" value-ref="xpzj02"/>
+            </map>
+        </property>
+    </bean>
+
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="add*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+            <tx:method name="del*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="update*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="checkSysSession" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="*" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+    <aop:config>
+        <aop:pointcut id="allManagerMethod" expression="execution(* com.xproject.manager.tx..*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="allManagerMethod"/>
+    </aop:config>
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="multipleDataSource"/>
+    </bean>
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="configLocation" value="/WEB-INF/mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath:/com/xproject/mapper/**/*.xml"/>
+        <property name="dataSource" ref="multipleDataSource"/>
+    </bean>
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.xproject.dao"/>
+    </bean>
+
+    <!--<context:property-placeholder location="/WEB-INF/*.properties" />-->
+    <!-- 映射 -->
+    <import resource="applicationContext-baseinfo.xml"/>
+    <import resource="applicationContext-constantmap.xml"/>
+</beans>

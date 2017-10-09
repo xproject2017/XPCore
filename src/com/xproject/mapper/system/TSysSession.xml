@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xproject.dao.system.TSysSessionDao">
+
+    <select id="getTSysSession" parameterType="TSysSession" resultType="TSysSession">
+        select * from T_SYS_SESSION
+        <where>
+            <if test="sessionid!=null">
+                SESSIONID=#{sessionid}</if>
+            <if test="sessiontoken!=null">
+                AND SESSIONTOKEN=#{sessiontoken}</if>
+            <if test="lasttime!=null">
+                AND LASTTIME=#{lasttime}</if>
+            <if test="status!=null">
+                AND STATUS=#{status}</if>
+            <if test="userid!=null">
+                AND USERID=#{userid}</if>
+
+        </where>
+    </select>
+    <!-- 分页查询sql语句：入库时间CREATETIME字段上要有索引，且分页的where条件中一定要带有CREATETIME条件 -->
+    <!-- 分页查询sql语句：最后一次更新时间SAVETIME字段用于查询结果的排序 -->
+    <select id="getTSysSessionGroup" parameterType="TSysSession" resultType="hashMap">
+        select IFNULL(COUNT(SESSIONID),0) CNT,IFNULL(MAX(SESSIONID),0) MAXID,IFNULL(MIN(SESSIONID),0) MINID from T_SYS_SESSION
+        <where>
+            <if test="sessionid!=null">
+                SESSIONID=#{sessionid}</if>
+            <if test="sessiontoken!=null">
+                AND SESSIONTOKEN=#{sessiontoken}</if>
+            <if test="lasttime!=null">
+                AND LASTTIME=#{lasttime}</if>
+            <if test="status!=null">
+                AND STATUS=#{status}</if>
+            <if test="userid!=null">
+                AND USERID=#{userid}</if>
+
+        </where>
+    </select>
+    <!-- 分页查询sql语句：入库时间CREATETIME字段上要有索引，且分页的where条件中一定要带有CREATETIME条件 -->
+    <!-- 分页查询sql语句：最后一次更新时间SAVETIME字段用于查询结果的排序 -->
+    <select id="getTSysSessionList" parameterType="TSysSession" resultType="TSysSession">
+        select * from T_SYS_SESSION
+        <where>
+            <if test="sessionid!=null">
+                SESSIONID=#{sessionid}</if>
+            <if test="sessiontoken!=null">
+                AND SESSIONTOKEN=#{sessiontoken}</if>
+            <if test="lasttime!=null">
+                AND LASTTIME=#{lasttime}</if>
+            <if test="status!=null">
+                AND STATUS=#{status}</if>
+            <if test="userid!=null">
+                AND USERID=#{userid}</if>
+        </where> ORDER BY SESSIONID DESC
+        <if test="currentpage!=null and pagesize!=null">
+            <![CDATA[ LIMIT #{currentsize}, #{pagesize} ]]>
+        </if>
+    </select>
+    <insert id="addTSysSession" useGeneratedKeys="true" keyProperty="sessionid" parameterType="TSysSession">
+        INSERT INTO T_SYS_SESSION (SESSIONID,SESSIONTOKEN,LASTTIME,STATUS,USERID)
+        values(#{sessionid},#{sessiontoken},now(),#{status},#{userid})
+    </insert>
+    <update id="updateTSysSession" parameterType="TSysSession">
+        update T_SYS_SESSION
+                <set>
+            <if test="1==1">LASTTIME=now(),</if>
+            <if test="status!=null">STATUS=#{status},</if>
+            <if test="userid!=null">USERID=#{userid},</if>
+        </set>
+        where SESSIONID=#{sessionid}
+    </update>
+    <delete id="deleteTSysSession" parameterType="TSysSession">
+        delete from T_SYS_SESSION
+        where SESSIONID=#{sessionid}
+    </delete>
+
+</mapper>

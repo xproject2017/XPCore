@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xproject.dao.system.TSysCacorelogDao">
+
+    <select id="getTSysCacorelog" parameterType="TSysCacorelog" resultType="TSysCacorelog">
+        select * from T_SYS_CACORELOG
+        <where>
+            <if test="id!=null">
+                ID=#{id}</if>
+            <if test="userid!=null">
+                AND USERID=#{userid}</if>
+            <if test="input!=null">
+                AND INPUT=#{input}</if>
+            <if test="output!=null">
+                AND OUTPUT=#{output}</if>
+            <if test="type!=null">
+                AND TYPE=#{type}</if>
+            <if test="typeid!=null">
+                AND TYPEID=#{typeid}</if>
+            <if test="createdate!=null">
+                AND CREATEDATE=#{createdate}</if>
+            <if test="url!=null">
+                AND URL=#{url}</if>
+
+        </where>
+    </select>
+    <!-- 分页查询sql语句：入库时间CREATETIME字段上要有索引，且分页的where条件中一定要带有CREATETIME条件 -->
+    <!-- 分页查询sql语句：最后一次更新时间SAVETIME字段用于查询结果的排序 -->
+    <select id="getTSysCacorelogGroup" parameterType="TSysCacorelog" resultType="hashMap">
+        select IFNULL(COUNT(ID),0) CNT,IFNULL(MAX(ID),0) MAXID,IFNULL(MIN(ID),0) MINID from T_SYS_CACORELOG
+        <where>
+            <if test="id!=null">
+                ID=#{id}</if>
+            <if test="userid!=null">
+                AND USERID=#{userid}</if>
+            <if test="input!=null">
+                AND INPUT=#{input}</if>
+            <if test="output!=null">
+                AND OUTPUT=#{output}</if>
+            <if test="type!=null">
+                AND TYPE=#{type}</if>
+            <if test="typeid!=null">
+                AND TYPEID=#{typeid}</if>
+            <if test="createdate!=null">
+                AND CREATEDATE=#{createdate}</if>
+            <if test="url!=null">
+                AND URL=#{url}</if>
+
+        </where>
+    </select>
+    <!-- 分页查询sql语句：入库时间CREATETIME字段上要有索引，且分页的where条件中一定要带有CREATETIME条件 -->
+    <!-- 分页查询sql语句：最后一次更新时间SAVETIME字段用于查询结果的排序 -->
+    <select id="getTSysCacorelogList" parameterType="TSysCacorelog" resultType="TSysCacorelog">
+        select * from T_SYS_CACORELOG
+        <where>
+            <if test="id!=null">
+                ID=#{id}</if>
+            <if test="userid!=null">
+                AND USERID=#{userid}</if>
+            <if test="input!=null">
+                AND INPUT=#{input}</if>
+            <if test="output!=null">
+                AND OUTPUT=#{output}</if>
+            <if test="type!=null">
+                AND TYPE=#{type}</if>
+            <if test="typeid!=null">
+                AND TYPEID=#{typeid}</if>
+            <if test="createdate!=null">
+                AND CREATEDATE=#{createdate}</if>
+            <if test="url!=null">
+                AND URL=#{url}</if>
+        </where> ORDER BY ID DESC
+        <if test="currentpage!=null and pagesize!=null">
+            <![CDATA[ LIMIT #{currentsize}, #{pagesize} ]]>
+        </if>
+    </select>
+    <insert id="addTSysCacorelog" useGeneratedKeys="true" keyProperty="id" parameterType="TSysCacorelog">
+        INSERT INTO T_SYS_CACORELOG (ID,USERID,INPUT,OUTPUT,TYPE,TYPEID,CREATEDATE,URL)
+        values(#{id},#{userid},#{input},#{output},#{type},#{typeid},now(),#{url})
+    </insert>
+    <update id="updateTSysCacorelog" parameterType="TSysCacorelog">
+        update T_SYS_CACORELOG
+            <set>
+            <if test="userid!=null">USERID=#{userid},</if>
+            <if test="input!=null">INPUT=#{input},</if>
+            <if test="output!=null">OUTPUT=#{output},</if>
+            <if test="type!=null">TYPE=#{type},</if>
+            <if test="typeid!=null">TYPEID=#{typeid},</if>
+            <if test="url!=null">URL=#{url},</if>
+        </set>
+        where ID=#{id}
+    </update>
+    <delete id="deleteTSysCacorelog" parameterType="TSysCacorelog">
+        delete from T_SYS_CACORELOG
+        where ID=#{id}
+    </delete>
+
+</mapper>

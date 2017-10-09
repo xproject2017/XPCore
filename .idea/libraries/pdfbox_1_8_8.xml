@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="pdfbox-1.8.8">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../javalib/pdfbox/jai_imageio-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../javalib/pdfbox/pdfbox-2.0.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../javalib/pdfbox/bcprov-jdk16-1.46.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../javalib/pdfbox/fontbox-2.0.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../javalib/pdfbox/icepdf-core-4.1.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

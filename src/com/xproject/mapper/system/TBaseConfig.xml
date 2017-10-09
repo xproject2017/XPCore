@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xproject.dao.system.TBaseConfigDao">
+
+    <select id="getTBaseConfig" parameterType="TBaseConfig" resultType="TBaseConfig">
+        select * from T_BASE_CONFIG
+        <where>
+            <if test="id!=null">
+                ID=#{id}</if>
+            <if test="cnfkey!=null">
+                AND CNFKEY=#{cnfkey}</if>
+            <if test="cnfvalue!=null">
+                AND CNFVALUE=#{cnfvalue}</if>
+            <if test="cnftitle!=null">
+                AND CNFTITLE=#{cnftitle}</if>
+            <if test="cnftype!=null">
+                AND CNFTYPE=#{cnftype}</if>
+            <if test="astatus!=null">
+                AND ASTATUS=#{astatus}</if>
+            <if test="remark!=null">
+                AND REMARK=#{remark}</if>
+            <if test="createtime!=null">
+                AND CREATETIME>=#{createtime}</if>
+
+        </where>
+    </select>
+    <!-- 分页查询sql语句：入库时间CREATETIME字段上要有索引，且分页的where条件中一定要带有CREATETIME条件 -->
+    <!-- 分页查询sql语句：最后一次更新时间SAVETIME字段用于查询结果的排序 -->
+    <select id="getTBaseConfigGroup" parameterType="TBaseConfig" resultType="hashMap">
+        select IFNULL(COUNT(ID),0) CNT,IFNULL(MAX(ID),0) MAXID,IFNULL(MIN(ID),0) MINID from T_BASE_CONFIG
+        <where>
+            <if test="id!=null">
+                ID=#{id}</if>
+            <if test="cnfkey!=null">
+                AND CNFKEY=#{cnfkey}</if>
+            <if test="cnfvalue!=null">
+                AND CNFVALUE=#{cnfvalue}</if>
+            <if test="cnftitle!=null">
+                AND CNFTITLE=#{cnftitle}</if>
+            <if test="cnftype!=null">
+                AND CNFTYPE=#{cnftype}</if>
+            <if test="astatus!=null">
+                AND ASTATUS=#{astatus}</if>
+            <if test="remark!=null">
+                AND REMARK=#{remark}</if>
+            <if test="createtime!=null">
+                AND CREATETIME>=#{createtime}</if>
+
+        </where>
+    </select>
+    <!-- 分页查询sql语句：入库时间CREATETIME字段上要有索引，且分页的where条件中一定要带有CREATETIME条件 -->
+    <!-- 分页查询sql语句：最后一次更新时间SAVETIME字段用于查询结果的排序 -->
+    <select id="getTBaseConfigList" parameterType="TBaseConfig" resultType="TBaseConfig">
+        select * from T_BASE_CONFIG
+        <where>
+            <if test="id!=null">
+                ID=#{id}</if>
+            <if test="cnfkey!=null">
+                AND CNFKEY=#{cnfkey}</if>
+            <if test="cnfvalue!=null">
+                AND CNFVALUE=#{cnfvalue}</if>
+            <if test="cnftitle!=null">
+                AND CNFTITLE=#{cnftitle}</if>
+            <if test="cnftype!=null">
+                AND CNFTYPE=#{cnftype}</if>
+            <if test="astatus!=null">
+                AND ASTATUS=#{astatus}</if>
+            <if test="remark!=null">
+                AND REMARK=#{remark}</if>
+            <if test="createtime!=null">
+                AND CREATETIME>=#{createtime}</if>
+        </where> ORDER BY CREATETIME DESC
+        <if test="currentpage!=null and pagesize!=null">
+            <![CDATA[ LIMIT #{currentsize}, #{pagesize} ]]>
+        </if>
+    </select>
+    <insert id="addTBaseConfig" useGeneratedKeys="true" keyProperty="primaryKey" parameterType="TBaseConfig">
+        INSERT INTO T_BASE_CONFIG (ID,CNFKEY,CNFVALUE,CNFTITLE,CNFTYPE,ASTATUS,SAVETIME,REMARK,CREATETIME)
+        values(#{id},#{cnfkey},#{cnfvalue},#{cnftitle},#{cnftype},#{astatus},NOW(),#{remark},NOW())
+    </insert>
+    <update id="updateTBaseConfig" parameterType="TBaseConfig">
+        update T_BASE_CONFIG
+        <set>
+            <if test="cnfkey!=null">CNFKEY=#{cnfkey},</if>
+            <if test="cnfvalue!=null">CNFVALUE=#{cnfvalue},</if>
+            <if test="cnftitle!=null">CNFTITLE=#{cnftitle},</if>
+            <if test="cnftype!=null">CNFTYPE=#{cnftype},</if>
+            <if test="astatus!=null">ASTATUS=#{astatus},</if>
+            <if test="1==1">SAVETIME=NOW(),</if>
+            <if test="remark!=null">REMARK=#{remark},</if>
+        </set>
+        where ID=#{id} AND SAVETIME=#{savetime}
+    </update>
+    <delete id="deleteTBaseConfig" parameterType="TBaseConfig">
+        delete from T_BASE_CONFIG
+        where ID=#{id} AND SAVETIME=#{savetime}
+    </delete>
+
+</mapper>

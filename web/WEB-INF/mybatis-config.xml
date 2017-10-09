@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+    <typeAliases>
+        <!--系统bean -->
+        <typeAlias type="com.xproject.bean.dao.system.TBaseConfig" alias="TBaseConfig" 	/>
+        <typeAlias type="com.xproject.bean.dao.system.TSysCacorelog" alias="TSysCacorelog" 	/>
+        <typeAlias type="com.xproject.bean.dao.system.TSysMenu" alias="TSysMenu" 	/>
+        <typeAlias type="com.xproject.bean.dao.system.TSysRole" alias="TSysRole" 	/>
+        <typeAlias type="com.xproject.bean.dao.system.TSysSession" alias="TSysSession" 	/>
+        <typeAlias type="com.xproject.bean.dao.system.TSysStaff" alias="TSysStaff" 	/>
+        <typeAlias type="com.xproject.bean.dao.system.TSysStaffMenu" alias="TSysStaffMenu" 	/>
+
+
+
+    </typeAliases>
+</configuration>
